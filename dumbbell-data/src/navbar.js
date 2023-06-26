@@ -13,8 +13,8 @@ const NavigationBar = () => {
           <Nav.Link as={NavLink} to="/weightlifting" exact activeClassName="active">Weightlifting</Nav.Link>
           <Nav.Link as={NavLink} to="/cardio" activeClassName="active">Cardio</Nav.Link>
           <NavDropdown title="Graphs/Stats" id="navbarDropdownMenuLink">
-            <NavDropdown.Item as={NavLink} to="/action" activeClassName="active">Weightlifting</NavDropdown.Item>
-            <NavDropdown.Item as={NavLink} to="/another-action" activeClassName="active">Cardio</NavDropdown.Item>
+            <NavDropdown.Item as={NavLink} to="/wl-stats" activeClassName="active">Weightlifting</NavDropdown.Item>
+            <NavDropdown.Item as={NavLink} to="/cardio-stats" activeClassName="active">Cardio</NavDropdown.Item>
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>

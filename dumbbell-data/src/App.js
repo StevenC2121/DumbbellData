@@ -4,6 +4,8 @@ import NavigationBar from './navbar';
 import Home from './components/home';
 import Cardio from './components/cardio';
 import Weightlifting from './components/weightlifting';
+import WLstats from './components/stats-weightlifting';
+import CardioStats from './components/stats-cardio';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
           <Route path = "/" element={<Home />} />
           <Route path="/weightlifting" element={<Weightlifting />} />
           <Route path="/cardio" element={<Cardio />} />
+          <Route path="/wl-stats" element={<WLstats />} />
+          <Route path="/cardio-stats" element={<CardioStats />} />
         </Routes>
       </div>
     </>
