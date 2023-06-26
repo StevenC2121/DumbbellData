@@ -1,24 +1,23 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Route, Routes } from 'react-router-dom';
+import NavigationBar from './navbar';
+import Home from './components/home';
+import Cardio from './components/cardio';
+import Weightlifting from './components/weightlifting';
 
-const NavigationBar = () => {
+function App() {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
-      <Navbar.Brand href="#">Dumbbell Data</Navbar.Brand>
-      <Navbar.Toggle aria-controls="navbarNavDropdown" />
-      <Navbar.Collapse id="navbarNavDropdown">
-        <Nav className="ml-auto">
-          <Nav.Link href="#" active>Weightlifting</Nav.Link>
-          <Nav.Link href="#">Cardio</Nav.Link>
-          <NavDropdown title="Graphs" id="navbarDropdownMenuLink">
-            <NavDropdown.Item href="#">Weightlifting</NavDropdown.Item>
-            <NavDropdown.Item href="#">Cardio</NavDropdown.Item>
-          </NavDropdown>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+    <>
+      <NavigationBar />
+      <div className="container">
+        <Routes>
+          <Route path = "/" element={<Home />} />
+          <Route path="/weightlifting" element={<Weightlifting />} />
+          <Route path="/cardio" element={<Cardio />} />
+        </Routes>
+      </div>
+    </>
   );
-};
+}
 
-export default NavigationBar;
+export default App;
