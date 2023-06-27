@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { NavLink } from 'react-router-dom';
 
 const NavigationBar = () => {
@@ -19,9 +20,9 @@ const NavigationBar = () => {
               <NavLink className="nav-link" activeClassName="active" to="/cardio">Cardio</NavLink>
             </li>
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <NavLink className="nav-link dropdown-toggle" to="/graphs-stats" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Graphs/Stats
-              </a>
+              </NavLink>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><NavLink className="dropdown-item" activeClassName="active" to="/wl-stats">Weightlifting</NavLink></li>
                 <li><NavLink className="dropdown-item" activeClassName="active" to="/cardio-stats">Cardio</NavLink></li>
