@@ -49,20 +49,23 @@ export default class Weightlifting extends React.Component {
     });
   }
 
-  onSubmit(e){
+  onSubmit(e) {
     e.preventDefault();
-
-    const exercise = {
-      username: this.state.username,
-      description: this.state.description,
-      duration: this.state.duration,
-      date: this.state.date
+    try {
+      const exercise = {
+        username: this.state.username,
+        description: this.state.description,
+        duration: this.state.duration,
+        date: this.state.date
+      };
+  
+      console.log(exercise);
+      window.location = '/';
+    } catch (error) {
+      console.error(error);
     }
-
-    console.log(exercise)
-
-    window.location = '/';
   }
+  
   render() {
     return (
       <div>

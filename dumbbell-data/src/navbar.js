@@ -7,7 +7,7 @@ const NavigationBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
-      <img src="/dbdata-logo.png" alt="" width="43.75" height="35" class="d-inline-block align-text-top"></img>
+      <img src="/dbdata-logo.png" alt="" width="43.75" height="35" className="d-inline-block align-text-top"></img>
         <NavLink className="navbar-brand" to="/">Dumbbell Data</NavLink>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -15,10 +15,10 @@ const NavigationBar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mx-auto">
             <li className="nav-item">
-              <NavLink className="nav-link" activeClassName="active" to="/weightlifting">Weightlifting</NavLink>
+              <NavLink className="nav-link" to="/weightlifting">Weightlifting</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" activeClassName="active" to="/cardio">Cardio</NavLink>
+              <NavLink className="nav-link" to="/cardio">Cardio</NavLink>
             </li>
             <li className="nav-item">
               <div className="dropdown">
@@ -26,8 +26,8 @@ const NavigationBar = () => {
                   Graphs/Stats
                 </NavLink>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><NavLink className="dropdown-item" activeClassName="active" to="/wl-stats">Weightlifting</NavLink></li>
-                  <li><NavLink className="dropdown-item" activeClassName="active" to="/cardio-stats">Cardio</NavLink></li>
+                  <li><NavLink className="dropdown-item" to="/wl-stats">Weightlifting</NavLink></li>
+                  <li><NavLink className="dropdown-item" to="/cardio-stats">Cardio</NavLink></li>
                 </ul>
               </div>
             </li>
