@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+
 import NavigationBar from './navbar';
 import Home from './pages/home';
 import Cardio from './pages/cardio';
@@ -9,11 +10,10 @@ import CardioStats from './pages/stats-cardio';
 
 function App() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      <div style={{ flex: 1 }}>
+    <div>
+      <div>
         <NavigationBar />
       </div>
-      <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
         <div className="container">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -23,7 +23,6 @@ function App() {
             <Route path="/cardio-stats" element={<CardioStats />} />
           </Routes>
         </div>
-      </div>
     </div>
   );
 }

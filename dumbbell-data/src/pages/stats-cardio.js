@@ -1,3 +1,3 @@
 export default function CardioStats() {
-    return <h1>Stats and Graphs for Cardio!</h1>
+    return <p>Stats and Graphs for Cardio!</p>
   }

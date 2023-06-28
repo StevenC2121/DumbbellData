@@ -1,3 +1,3 @@
 export default function Weightlifting() {
-    return <h1>Weightlifting</h1>
+    return <p>Weightlifting</p>
   }
