@@ -11,18 +11,16 @@ import CardioStats from './pages/stats-cardio';
 function App() {
   return (
     <div>
-      <div>
-        <NavigationBar />
+      <NavigationBar />
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/weightlifting" element={<Weightlifting />} />
+          <Route path="/cardio" element={<Cardio />} />
+          <Route path="/wl-stats" element={<WLstats />} />
+          <Route path="/cardio-stats" element={<CardioStats />} />
+        </Routes>
       </div>
-        <div className="container">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/weightlifting" element={<Weightlifting />} />
-            <Route path="/cardio" element={<Cardio />} />
-            <Route path="/wl-stats" element={<WLstats />} />
-            <Route path="/cardio-stats" element={<CardioStats />} />
-          </Routes>
-        </div>
     </div>
   );
 }
