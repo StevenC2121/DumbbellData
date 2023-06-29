@@ -7,6 +7,7 @@ import Cardio from './pages/cardio';
 import Weightlifting from './pages/weightlifting';
 import WLstats from './pages/stats-weightlifting';
 import CardioStats from './pages/stats-cardio';
+import Account from './pages/new-user';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/weightlifting" element={<Weightlifting />} />
           <Route path="/cardio" element={<Cardio />} />
+          <Route path="/new-user" element={<Account />} />
           <Route path="/wl-stats" element={<WLstats />} />
           <Route path="/cardio-stats" element={<CardioStats />} />
         </Routes>

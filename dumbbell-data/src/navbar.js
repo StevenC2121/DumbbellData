@@ -21,6 +21,9 @@ const NavigationBar = () => {
               <NavLink className="nav-link" to="/cardio">Cardio</NavLink>
             </li>
             <li className="nav-item">
+              <NavLink className="nav-link" to="/new-user">Account</NavLink>
+            </li>
+            <li className="nav-item">
               <div className="dropdown">
                 <NavLink className="nav-link dropdown-toggle" to="/graphs-stats" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Graphs/Stats
