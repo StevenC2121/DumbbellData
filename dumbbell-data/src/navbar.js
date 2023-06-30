@@ -24,9 +24,6 @@ const NavigationBar = () => {
               <NavLink className="nav-link" to="/edit-exercise">Edit Exercise</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/new-user">Account</NavLink>
-            </li>
-            <li className="nav-item">
               <div className="dropdown">
                 <NavLink className="nav-link dropdown-toggle" to="/graphs-stats" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Graphs/Stats
@@ -37,6 +34,9 @@ const NavigationBar = () => {
                 </ul>
               </div>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/new-user">Account</NavLink>
+            </li>            
           </ul>
           <ul className="navbar-nav">
             <li className="nav-item">
