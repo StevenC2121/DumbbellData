@@ -7,12 +7,28 @@ const Exercise = props => (
     <td>{props.exercise.username}</td>
     <td>{props.exercise.description}</td>
     <td>{props.exercise.duration}</td>
-    <td>{props.exercise.date.substring(0,10)}</td>
+    <td>{props.exercise.date.substring(0, 10)}</td>
     <td>
-      <Link to={'/edit/'+props.exercise._id}>edit</Link> | <a href="#" onClick={() => { props.deleteExercise(props.exercise._id) }}>delete</a>
+      <button
+        className="btn btn-link"
+        onClick={() => {
+          window.location.href = '/edit/' + props.exercise._id;
+        }}
+      >
+        edit
+      </button>
+      {' | '}
+      <button
+        className="btn btn-link"
+        onClick={() => {
+          props.deleteExercise(props.exercise._id);
+        }}
+      >
+        delete
+      </button>
     </td>
   </tr>
-)
+);
 
 export default class Home extends React.Component {
   constructor(props) {
