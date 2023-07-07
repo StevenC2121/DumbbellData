@@ -68,7 +68,7 @@ export default class Home extends React.Component {
         <div>
           <h3>Logged Exercsises</h3>
           <table className='table'>
-            <thread className='thread-light'>
+            <thead className='thread-light'>
               <tr>
                 <th>Username</th>
                 <th>Description</th>
@@ -76,7 +76,7 @@ export default class Home extends React.Component {
                 <th>Date</th>
                 <th>Actions</th>
               </tr>
-            </thread>
+            </thead>
             <tbody>
               { this.exerciseList() }
             </tbody>
