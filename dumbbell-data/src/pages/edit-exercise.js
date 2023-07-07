@@ -69,7 +69,7 @@ const EditExercise = () => {
 
     console.log(updatedExercise);
 
-    axios.post(`http://localhost:5000/exercises/update/${id}`, updatedExercise)
+    axios.put(`http://localhost:5000/exercises/update/${id}`, updatedExercise)
       .then(res => console.log(res.data))
       .catch(error => console.log(error));
 
