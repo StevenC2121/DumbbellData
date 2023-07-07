@@ -12,7 +12,7 @@ const Exercise = props => (
       <button
         className="btn btn-link"
         onClick={() => {
-          window.location.href = '/edit/' + props.exercise._id;
+          window.location.href = '/edit-exercise/' + props.exercise._id;
         }}
       >
         edit
