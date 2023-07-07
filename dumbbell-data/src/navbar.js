@@ -18,9 +18,6 @@ const NavigationBar = () => {
               <NavLink className="nav-link" to="/weightlifting">Weightlifting</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/cardio">Cardio</NavLink>
-            </li>
-            <li className="nav-item">
               <NavLink className="nav-link" to="/edit-exercise">Edit Exercise</NavLink>
             </li>
             <li className="nav-item">
