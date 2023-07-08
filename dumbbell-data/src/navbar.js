@@ -18,19 +18,20 @@ const NavigationBar = () => {
               <NavLink className="nav-link mx-2" to="/weightlifting">Weightlifting</NavLink>
             </li>
             <li className="nav-item">
+              <NavLink className="nav-link mx-2" to="/wl-stats">Graphs/Stats</NavLink>
+            </li> 
+            <li className="nav-item">
               <div className="dropdown">
                 <NavLink className="nav-link dropdown-toggle mx-2" to="/graphs-stats" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Graphs/Stats
+                  Account
                 </NavLink>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><NavLink className="dropdown-item" to="/wl-stats">Weightlifting</NavLink></li>
-                  <li><NavLink className="dropdown-item" to="/cardio-stats">Cardio</NavLink></li>
+                  <li><NavLink className="dropdown-item" to="/login">Login</NavLink></li>
+                  <li><NavLink className="dropdown-item" to="/new-user">Sign Up</NavLink></li>
                 </ul>
               </div>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link mx-2" to="/new-user">Account</NavLink>
-            </li>            
+           
           </ul>
         </div>
         <div className="d-flex">
