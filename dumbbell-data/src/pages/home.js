@@ -70,8 +70,8 @@ export default class Home extends React.Component {
             <thead className='thread-light'>
               <tr>
                 <th>Username</th>
-                <th>Description</th>
-                <th>Duration</th>
+                <th>Lift Description</th>
+                <th>Weight (in lb)</th>
                 <th>Date</th>
                 <th>Actions</th>
               </tr>

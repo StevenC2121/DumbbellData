@@ -102,7 +102,7 @@ export default class Weightlifting extends React.Component {
             </select>
           </div>
           <div className='form-group'>
-            <label>Description: </label>
+            <label>Lift Description: </label>
             <input 
               type='text'
               className='form-control'
@@ -111,7 +111,7 @@ export default class Weightlifting extends React.Component {
               />
           </div>
           <div className='form-group'>
-            <label>Duration (in minutes): </label>
+            <label>Weight (in lb): </label>
             <input
               type='text'
               className='form-control'
