@@ -5,7 +5,7 @@ import Home from './pages/home';
 import Weightlifting from './pages/weightlifting';
 import WLstats from './pages/stats-weightlifting';
 import EditExercise from './pages/edit-exercise'
-import SignUp from './pages/new-user';
+import SignUp from './pages/register';
 import Login from './pages/login'
 
 function App() {
