@@ -6,7 +6,9 @@ import Weightlifting from './pages/weightlifting';
 import WLstats from './pages/stats-weightlifting';
 import CardioStats from './pages/stats-cardio';
 import EditExercise from './pages/edit-exercise'
-import Account from './pages/new-user';
+import Signup from './pages/signup';
+import Login from './pages/login'
+
 
 function App() {
   return (
@@ -14,9 +16,11 @@ function App() {
       <NavigationBar />
       <div className="container">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/weightlifting" element={<Weightlifting />} />
-          <Route path="/new-user" element={<Account />} />
+          <Route path="/new-user" element={<Signup />} />
           <Route path="/edit-exercise/:id" element={<EditExercise />} />
           <Route path="/wl-stats" element={<WLstats />} />
           <Route path="/cardio-stats" element={<CardioStats />} />
