@@ -8,11 +8,12 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/add').post((req, res) => {
-  const { username, email, password } = req.body; 
-  const newUser = new User({ username, email, password });
+  const { email, password } = req.body; 
+  const newUser = new User({ email, password });
   newUser.save()
     .then(() => res.json('User added!'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
+
 
 module.exports = router;

@@ -3,7 +3,6 @@ import axios from "axios"
 import { useNavigate, Link } from "react-router-dom"
 
 const Login = () => {
-    const [username, setUsername]=useState('')
     const [email, setEmail]=useState('')
     const [password, setPassword]=useState('')
 
@@ -12,7 +11,7 @@ const Login = () => {
 
         try{
             await axios.post("http://localhost:3000/", {
-                username,email,password
+                email,password
             })
         }
         catch(e){
@@ -25,7 +24,6 @@ const Login = () => {
             <h1>Login</h1>
 
             <form action="POST">
-                <input type="text" onChange={(e)=>{setUsername(e.target.value)}} placeholder="username" />
                 <input type="email" onChange={(e)=>{setEmail(e.target.value)}} placeholder="email" />
                 <input type="password" onChange={(e)=>{setPassword(e.target.value)}} placeholder="password" />
                 <input type="submit" onClick={submit} />

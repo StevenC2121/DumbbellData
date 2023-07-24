@@ -25,7 +25,6 @@ const Signup = () => {
             <h1>Signup</h1>
 
             <form action="POST">
-                <input type="text" onChange={(e)=>{setUsername(e.target.value)}} placeholder="username" />
                 <input type="email" onChange={(e)=>{setEmail(e.target.value)}} placeholder="email" />
                 <input type="password" onChange={(e)=>{setPassword(e.target.value)}} placeholder="password" />
                 <input type="submit" onClick={submit} />
