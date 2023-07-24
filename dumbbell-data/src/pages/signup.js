@@ -3,7 +3,6 @@ import axios from "axios"
 import { useNavigate, Link } from "react-router-dom"
 
 const Signup = () => {
-    const [username, setUsername]=useState('')
     const [email, setEmail]=useState('')
     const [password, setPassword]=useState('')
 
@@ -12,7 +11,7 @@ const Signup = () => {
 
         try{
             await axios.post("http://localhost:5000/users/add", {
-                username,email,password
+                email,password
             })
         }
         catch(e){

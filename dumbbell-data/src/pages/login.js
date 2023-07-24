@@ -1,38 +1,59 @@
-import React, {useEffect, useState} from "react"
-import axios from "axios"
-import { useNavigate, Link } from "react-router-dom"
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate, Link } from "react-router-dom";
 
 const Login = () => {
-    const [email, setEmail]=useState('')
-    const [password, setPassword]=useState('')
+  const history = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    async function submit(e){
-        e.preventDefault();
+  async function submit(e) {
+    e.preventDefault();
 
-        try{
-            await axios.post("http://localhost:3000/", {
-                email,password
-            })
+    try {
+      const response = await axios.get("http://localhost:5000/users");
+      const users = response.data;
+      
+      const user = users.find((u) => u.email === email);
+      if (user) {
+        if (user.password === password) {
+          history("/home", { state: { id: email } });
+        } else {
+          alert("Incorrect password");
         }
-        catch(e){
-            console.log(e);
-        }
+      } else {
+        alert("User not found");
+      }
+    } catch (e) {
+      alert("Login Error: Something went wrong");
+      console.log(e);
     }
+  }
 
-    return (
-        <div>
-            <h1>Login</h1>
+  return (
+    <div>
+      <h1>Login</h1>
 
-            <form action="POST">
-                <input type="email" onChange={(e)=>{setEmail(e.target.value)}} placeholder="email" />
-                <input type="password" onChange={(e)=>{setPassword(e.target.value)}} placeholder="password" />
-                <input type="submit" onClick={submit} />
-            </form>
-            <br />
-            <p>OR</p>
-            <Link to="/signup">Signup Page</Link>
-        </div>
-    )
-}
+      <form onSubmit={submit}>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="email"
+        />
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="password"
+        />
+        <input type="submit" />
+      </form>
+      <br />
+      <p>OR</p>
+      <Link to="/signup">Signup Page</Link>
+    </div>
+  );
+};
 
-export default Login
+export default Login;

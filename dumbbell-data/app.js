@@ -1,66 +1,13 @@
-const express = require("express")
-const User = require("../server/routes/users")
-const cors = require("cors")
-const app = express()
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-app.use(cors())
+const express = require("express");
+const User = require("../server/routes/users");
+const cors = require("cors");
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
+app.use("/users", User);
 
-
-app.get("/",cors(),(req,res)=>{
-
-})
-
-
-app.post("/",async(req,res)=>{
-    const{email,password}=req.body
-
-    try{
-        const check=await User.findOne({email:email})
-
-        if(check){
-            res.json("exist")
-        }
-        else{
-            res.json("notexist")
-        }
-
-    }
-    catch(e){
-        res.json("fail")
-    }
-
-})
-
-
-
-app.post("/users",async(req,res)=>{
-    const{email,password}=req.body
-
-    const data={
-        email:email,
-        password:password
-    }
-
-    try{
-        const check=await User.findOne({email:email})
-
-        if(check){
-            res.json("exist")
-        }
-        else{
-            res.json("notexist")
-            await User.insertMany([data])
-        }
-
-    }
-    catch(e){
-        res.json("fail")
-    }
-
-})
-
-app.listen(8000,()=>{
-    console.log("port connected");
-})
+app.listen(8000, () => {
+  console.log("Server is running on port 8000");
+});
