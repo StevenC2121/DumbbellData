@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import bcrypt from "bcryptjs"; // Import bcryptjs
 
 const Login = () => {
   const history = useNavigate();
@@ -13,10 +14,13 @@ const Login = () => {
     try {
       const response = await axios.get("http://localhost:5000/users");
       const users = response.data;
-      
+
       const user = users.find((u) => u.email === email);
       if (user) {
-        if (user.password === password) {
+        // Compare the entered password with the hashed password using bcryptjs
+        const isPasswordCorrect = await bcrypt.compare(password, user.password);
+
+        if (isPasswordCorrect) {
           history("/home", { state: { id: email } });
         } else {
           alert("Incorrect password");
