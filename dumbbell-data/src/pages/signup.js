@@ -1,23 +1,28 @@
 import React, {useEffect, useState} from "react"
 import axios from "axios"
+import bcrypt from "bcryptjs"
 import { useNavigate, Link } from "react-router-dom"
 
 const Signup = () => {
     const [email, setEmail]=useState('')
     const [password, setPassword]=useState('')
 
-    async function submit(e){
+    async function submit(e) {
         e.preventDefault();
-
-        try{
-            await axios.post("http://localhost:5000/users/add", {
-                email,password
-            })
+      
+        try {
+          const saltRounds = 10; 
+       
+          const hashedPassword = await bcrypt.hash(password, saltRounds);
+      
+          await axios.post("http://localhost:5000/users/add", {
+            email,
+            password: hashedPassword, 
+          });
+        } catch (e) {
+          console.log(e);
         }
-        catch(e){
-            console.log(e);
-        }
-    }
+      }
 
     return (
         <div>
