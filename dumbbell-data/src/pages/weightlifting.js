@@ -1,20 +1,20 @@
 import React from 'react';
 import axios from 'axios';
-import DatePicker from 'react-datepicker'
-import "react-datepicker/dist/react-datepicker.css"
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 
 export default class Weightlifting extends React.Component {
   constructor(props) {
     super(props);
 
-    this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onChangeDuration = this.onChangeDuration.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      username: '',
+      email: '',
       description: '',
       duration: 0,
       date: new Date(),
@@ -25,32 +25,35 @@ export default class Weightlifting extends React.Component {
   componentDidMount() {
     axios.get('http://localhost:5000/users/')
       .then(response => {
-        if(response.data.length > 0){
+        if (response.data.length > 0) {
           this.setState({
-            users: response.data.map(user => user.username),
-            username: response.data[0].username
-          })
+            users: response.data.map(user => user.email),
+            email: response.data[0].email
+          });
         }
-      })
+      });
   }
 
-  onChangeUsername(e) {
-    this.setState ({
-      username: e.target.value
+  onChangeEmail(e) {
+    this.setState({
+      email: e.target.value
     });
   }
+
   onChangeDescription(e) {
-    this.setState ({
+    this.setState({
       description: e.target.value
     });
   }
+
   onChangeDuration(e) {
-    this.setState ({
+    this.setState({
       duration: e.target.value
     });
   }
+
   onChangeDate(date) {
-    this.setState ({
+    this.setState({
       date: date
     });
   }
@@ -59,20 +62,20 @@ export default class Weightlifting extends React.Component {
     e.preventDefault();
     try {
       const exercise = {
-        username: this.state.username,
+        email: this.state.email,
         description: this.state.description,
         duration: this.state.duration,
         date: this.state.date
       };
-  
+
       console.log(exercise);
 
       axios.post('http://localhost:5000/exercises/add', exercise)
-      .then(res => console.log(res.data));
+        .then(res => console.log(res.data));
 
-    this.setState({
-      username: ''
-    })
+      this.setState({
+        email: ''
+      });
       window.location = '/';
     } catch (error) {
       console.error(error);
@@ -85,7 +88,7 @@ export default class Weightlifting extends React.Component {
         <h3>Create New Weightlifting Log</h3>
         <form onSubmit={this.onSubmit}>
           <div className='form-group'>
-            <label>Username: </label>
+            <label>Email: </label>
             <select ref="userInput"
               required
               className='form-control'

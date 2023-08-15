@@ -1,12 +1,15 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { BrowserRouter as Router } from 'react-router-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
+import { UserProvider } from "./UserContext"; // Adjust the path
 
-import App from './App';
+import App from "./App"; // Your main app component
 
-const rootElement = document.getElementById('root');
-createRoot(rootElement).render(
+ReactDOM.render(
   <Router>
-    <App />
-  </Router>
+    <UserProvider>
+      <App />
+    </UserProvider>
+  </Router>,
+  document.getElementById("root")
 );
