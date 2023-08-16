@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import bcrypt from "bcryptjs"; // Import bcryptjs
+import { useUser } from "../UserContext";
 
 const Login = () => {
   const history = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { setCurrentUser } = useUser();
 
   async function submit(e) {
     e.preventDefault();
@@ -21,6 +23,7 @@ const Login = () => {
         const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
         if (isPasswordCorrect) {
+          setCurrentUser(user.email);
           history("/home", { state: { id: email } });
         } else {
           alert("Incorrect password");
