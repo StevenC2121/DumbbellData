@@ -1,10 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useUser } from '../UserContext';
 
-const Exercise = props => (
+const Exercise = (props) => (
   <tr>
-    <td>{props.exercise.username}</td>
+    <td>{props.exercise.email}</td> {/* Change username to email */}
     <td>{props.exercise.description}</td>
     <td>{props.exercise.duration}</td>
     <td>{props.exercise.date.substring(0, 10)}</td>
@@ -31,23 +31,24 @@ const Exercise = props => (
 );
 
 const Home = () => {
-  const user = useUser(); // Call useUser hook to get the user from context
-
+  const user = useUser();
   const [exercises, setExercises] = useState([]);
 
   useEffect(() => {
-    axios
-      .get('http://localhost:5000/exercises/')
-      .then((response) => {
+    const fetchExercises = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/exercises/');
         const userExercises = response.data.filter(
-          (exercise) => exercise.username === user.currentUser // Use user.currentUser
+          (exercise) => exercise.email === user.currentUser // Use user.currentUser
         );
         setExercises(userExercises);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.log(error);
-      });
-  }, [user.currentUser]); // Add user.currentUser as a dependency
+      }
+    };
+
+    fetchExercises();
+  }, [user.currentUser]);
 
   const deleteExercise = (id) => {
     axios
@@ -57,11 +58,11 @@ const Home = () => {
   };
 
   const exerciseList = () => {
-    return exercises.map((currentexercise) => (
+    return exercises.map((currentExercise) => (
       <Exercise
-        exercise={currentexercise}
+        exercise={currentExercise}
         deleteExercise={deleteExercise}
-        key={currentexercise._id}
+        key={currentExercise._id}
       />
     ));
   };
@@ -72,7 +73,7 @@ const Home = () => {
       <table className='table'>
         <thead className='thread-light'>
           <tr>
-            <th>Username</th>
+            <th>Email</th>
             <th>Lift Description</th>
             <th>Weight (in lb)</th>
             <th>Date</th>
