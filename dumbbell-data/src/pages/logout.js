@@ -11,7 +11,7 @@ const Logout = () => {
     setCurrentUser(null);
 
     // Redirect to the login page
-    navigate("/login");
+    navigate("/");
   };
 
   return (
