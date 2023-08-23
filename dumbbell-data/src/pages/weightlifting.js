@@ -2,10 +2,12 @@ import React from 'react';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import { useUser } from '../UserContext'; // Import useUser from UserContext
+import { useUser } from '../UserContext';
+import { useNavigate } from 'react-router-dom'; // Use useNavigate instead of useHistory
 
 export default function Weightlifting() {
-  const user = useUser(); // Get the currently logged-in user from context
+  const user = useUser();
+  const navigate = useNavigate(); // Get the navigate function
 
   const [description, setDescription] = React.useState('');
   const [duration, setDuration] = React.useState(0);
@@ -16,7 +18,7 @@ export default function Weightlifting() {
 
     try {
       const exercise = {
-        email: user.currentUser, // Use the currently logged-in user's email
+        email: user.currentUser,
         description,
         duration,
         date
@@ -32,13 +34,12 @@ export default function Weightlifting() {
       setDuration(0);
       setDate(new Date());
 
-      // Redirect to home page
-      window.location = '/home';
+      // Use navigate to go to the home page
+      navigate('/home');
     } catch (error) {
       console.error(error);
     }
   }
-
   return (
     <div>
       <h3>Create New Weightlifting Log</h3>
