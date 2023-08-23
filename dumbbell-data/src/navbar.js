@@ -28,6 +28,7 @@ const NavigationBar = () => {
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><NavLink className="dropdown-item" to="/">Login</NavLink></li>
                   <li><NavLink className="dropdown-item" to="/new-user">Sign Up</NavLink></li>
+                  <li><NavLink className="dropdown-item" to="/logout">Logout</NavLink></li>
                 </ul>
               </div>
             </li>

@@ -8,6 +8,7 @@ import CardioStats from './pages/stats-cardio';
 import EditExercise from './pages/edit-exercise'
 import Signup from './pages/signup';
 import Login from './pages/login'
+import Logout from './pages/logout'
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/edit-exercise/:id" element={<EditExercise />} />
           <Route path="/wl-stats" element={<WLstats />} />
           <Route path="/cardio-stats" element={<CardioStats />} />
+          <Route path="/logout" element={<Logout />} />
         </Routes>
       </div>
     </div>
