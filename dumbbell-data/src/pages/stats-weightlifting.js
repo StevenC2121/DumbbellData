@@ -1,3 +1,12 @@
-export default function WeightliftingStats() {
-    return <p>Stats and Graphs for Weightlifting!</p>
-  }
+import React from 'react';
+import BarChart from './barchart'
+
+const StatsWeightlifting = () => {
+  return (
+    <div>
+      <BarChart />
+    </div>
+  );
+};
+
+export default StatsWeightlifting;
