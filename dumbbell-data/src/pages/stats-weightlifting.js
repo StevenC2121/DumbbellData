@@ -1,10 +1,10 @@
 import React from 'react';
-import BarChart from './barchart'
+import LineChart from './linechart'
 
 const StatsWeightlifting = () => {
   return (
     <div>
-      <BarChart />
+      <LineChart />
     </div>
   );
 };
