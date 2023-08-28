@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
+import axios from 'axios';
+import { useUser } from '../UserContext';
 
 const LineChart = ({ exerciseData }) => {
   return (
@@ -43,23 +45,42 @@ const LineChart = ({ exerciseData }) => {
 };
 
 const StatsWeightlifting = () => {
-  const [selectedExercise, setSelectedExercise] = useState('Squat');
+  const [selectedExercise, setSelectedExercise] = useState('');
+  const [exerciseData, setExerciseData] = useState({});
+  const user = useUser();
 
+  useEffect(() => {
+    const fetchUserExerciseData = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/exercises/');
+        const userExercises = response.data.filter(
+          (exercise) => exercise.email === user.currentUser
+        );
 
-  const exerciseData = {
-    Squat: {
-      timestamps: ['2023-01-01', '2023-02-01','2023-03-01', '2023-04-01', '2023-05-01'],
-      weights: [200, 205, 210, 225, 255],
-    },
-    BenchPress: {
-      timestamps: ['2023-01-01', '2023-02-01','2023-03-01', '2023-04-01', '2023-05-01'],
-      weights: [150, 155, 160, 160, 175],
-    },
-    Deadlift: {
-      timestamps: ['2023-01-01', '2023-02-01','2023-03-01', '2023-04-01', '2023-05-01'],
-      weights: [250, 255, 260, 260, 350],
-    },
-  };
+        const exerciseChartData = {};
+        userExercises.forEach((exercise) => {
+          if (!exerciseChartData[exercise.description]) {
+            exerciseChartData[exercise.description] = {
+              timestamps: [],
+              weights: [],
+            };
+          }
+
+          exerciseChartData[exercise.description].timestamps.push(
+            exercise.date.substring(0, 10)
+          );
+          exerciseChartData[exercise.description].weights.push(exercise.weight);
+        });
+
+        setExerciseData(exerciseChartData);
+        setSelectedExercise(Object.keys(exerciseChartData)[0]); // Set initial exercise
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchUserExerciseData();
+  }, [user.currentUser]);
 
   return (
     <div>
@@ -74,7 +95,7 @@ const StatsWeightlifting = () => {
           </option>
         ))}
       </select>
-      <LineChart exerciseData={exerciseData[selectedExercise]} />
+      {selectedExercise && <LineChart exerciseData={exerciseData[selectedExercise]} />}
     </div>
   );
 };
