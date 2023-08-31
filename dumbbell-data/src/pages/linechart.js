@@ -1,22 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Line } from 'react-chartjs-2';
-import axios from 'axios';
-import { useUser } from '../UserContext';
 
 const LineChart = ({ exerciseData }) => {
+  const { timestamps, weights, durations } = exerciseData;
+
+  if (!timestamps || !weights || !durations) {
+    return null;
+  }
+
   return (
     <div>
       <Line
         data={{
-          labels: exerciseData.timestamps,
+          labels: timestamps,
           datasets: [
             {
               label: 'Exercise Data',
-              data: exerciseData.weights,
+              data: weights,
               borderColor: 'rgba(75, 192, 192, 1)',
               backgroundColor: 'rgba(75, 192, 192, 0.2)',
               borderWidth: 2,
               pointBackgroundColor: 'rgba(75, 192, 192, 1)',
+              pointRadius: 5,
+              pointHoverRadius: 7,
+            },
+            {
+              label: 'Exercise Duration',
+              data: durations,
+              borderColor: 'rgba(192, 75, 75, 1)',
+              backgroundColor: 'rgba(192, 75, 75, 0.2)',
+              borderWidth: 2,
+              pointBackgroundColor: 'rgba(192, 75, 75, 1)',
               pointRadius: 5,
               pointHoverRadius: 7,
             },
@@ -44,60 +58,4 @@ const LineChart = ({ exerciseData }) => {
   );
 };
 
-const StatsWeightlifting = () => {
-  const [selectedExercise, setSelectedExercise] = useState('');
-  const [exerciseData, setExerciseData] = useState({});
-  const user = useUser();
-
-  useEffect(() => {
-    const fetchUserExerciseData = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/exercises/');
-        const userExercises = response.data.filter(
-          (exercise) => exercise.email === user.currentUser
-        );
-
-        const exerciseChartData = {};
-        userExercises.forEach((exercise) => {
-          if (!exerciseChartData[exercise.description]) {
-            exerciseChartData[exercise.description] = {
-              timestamps: [],
-              weights: [],
-            };
-          }
-
-          exerciseChartData[exercise.description].timestamps.push(
-            exercise.date.substring(0, 10)
-          );
-          exerciseChartData[exercise.description].weights.push(exercise.weight);
-        });
-
-        setExerciseData(exerciseChartData);
-        setSelectedExercise(Object.keys(exerciseChartData)[0]); // Set initial exercise
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchUserExerciseData();
-  }, [user.currentUser]);
-
-  return (
-    <div>
-      <h1>Weightlifting Stats</h1>
-      <select
-        value={selectedExercise}
-        onChange={(e) => setSelectedExercise(e.target.value)}
-      >
-        {Object.keys(exerciseData).map((exercise) => (
-          <option key={exercise} value={exercise}>
-            {exercise}
-          </option>
-        ))}
-      </select>
-      {selectedExercise && <LineChart exerciseData={exerciseData[selectedExercise]} />}
-    </div>
-  );
-};
-
-export default StatsWeightlifting;
+export default LineChart;
