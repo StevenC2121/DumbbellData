@@ -1,7 +1,72 @@
 import React, { useState, useEffect } from 'react';
-import LineChart from './linechart';
+import { Line } from 'react-chartjs-2';
 import axios from 'axios';
 import { useUser } from '../UserContext';
+
+const LineChart = ({ exerciseData, selectedExercise }) => {
+  const selectedExerciseData = exerciseData[selectedExercise];
+
+  if (!selectedExerciseData) {
+    return null;
+  }
+
+  // Combine timestamps and durations into an array of objects
+  const dataPoints = selectedExerciseData.timestamps.map((timestamp, index) => ({
+    x: new Date(timestamp),
+    y: selectedExerciseData.durations[index],
+  }));
+
+  // Sort dataPoints based on x (date) values
+  dataPoints.sort((a, b) => a.x - b.x);
+
+  const data = {
+    datasets: [
+      {
+        label: selectedExercise,
+        data: dataPoints,
+        borderColor: 'rgba(75, 192, 192, 1)',
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderWidth: 2,
+        pointBackgroundColor: 'rgba(75, 192, 192, 1)',
+        pointRadius: 5,
+        pointHoverRadius: 7,
+      },
+    ],
+  };
+
+  const options = {
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        type: 'time',
+        title: {
+          display: true,
+          text: 'Date',
+        },
+      },
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: 'Duration',
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        labels: {
+          fontSize: 25,
+        },
+      },
+    },
+  };
+
+  return (
+    <div>
+      <Line data={data} height={400} width={600} options={options} />
+    </div>
+  );
+};
 
 const StatsWeightlifting = () => {
   const [selectedExercise, setSelectedExercise] = useState('');
@@ -17,20 +82,18 @@ const StatsWeightlifting = () => {
         );
 
         const exerciseChartData = {};
+
         userExercises.forEach((exercise) => {
+          const date = exercise.date.substring(0, 10);
           if (!exerciseChartData[exercise.description]) {
             exerciseChartData[exercise.description] = {
               timestamps: [],
-              weights: [],
-              durations: [], // Add durations field
+              durations: [],
             };
           }
 
-          exerciseChartData[exercise.description].timestamps.push(
-            exercise.date.substring(0, 10)
-          );
-          exerciseChartData[exercise.description].weights.push(exercise.weight);
-          exerciseChartData[exercise.description].durations.push(exercise.duration); // Add duration
+          exerciseChartData[exercise.description].timestamps.push(date);
+          exerciseChartData[exercise.description].durations.push(exercise.duration);
         });
 
         setExerciseData(exerciseChartData);
@@ -57,7 +120,7 @@ const StatsWeightlifting = () => {
         ))}
       </select>
       {selectedExercise && (
-        <LineChart exerciseData={exerciseData[selectedExercise]} />
+        <LineChart exerciseData={exerciseData} selectedExercise={selectedExercise} />
       )}
     </div>
   );
