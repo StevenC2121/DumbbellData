@@ -69,7 +69,7 @@ const LineChart = ({ exerciseData, selectedExercise }) => {
 };
 
 const StatsWeightlifting = () => {
-  const [selectedExercise, setSelectedExercise] = useState('');
+  const [selectedExercise, setSelectedExercise] = useState(''); // Set a default value here
   const [exerciseData, setExerciseData] = useState({});
   const user = useUser();
 
@@ -96,13 +96,18 @@ const StatsWeightlifting = () => {
         });
 
         setExerciseData(reformattedData);
+
+        // Set the default selected exercise here (e.g., the first exercise in the list)
+        if (Object.keys(reformattedData).length > 0) {
+          setSelectedExercise(Object.keys(reformattedData)[0]);
+        }
       } catch (error) {
         console.log(error);
       }
     };
 
     fetchUserExerciseData();
-  }, [user.currentUser, selectedExercise]);
+  }, [user.currentUser]);
 
   return (
     <div>
@@ -123,5 +128,6 @@ const StatsWeightlifting = () => {
     </div>
   );
 };
+
 
 export default StatsWeightlifting;
