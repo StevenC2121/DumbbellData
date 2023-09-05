@@ -4,26 +4,26 @@ import axios from 'axios';
 import { useUser } from '../UserContext';
 
 const LineChart = ({ exerciseData, selectedExercise }) => {
-  const selectedExerciseData = exerciseData[selectedExercise];
+  const selectedExerciseData = exerciseData[selectedExercise] || [];
 
-  if (!selectedExerciseData) {
-    return null;
+  // Sort the data by date
+  selectedExerciseData.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+  // Check if there's no data, and avoid rendering the chart
+  if (selectedExerciseData.length === 0) {
+    return <div>No data available.</div>;
   }
 
-  // Combine timestamps and durations into an array of objects
-  const dataPoints = selectedExerciseData.timestamps.map((timestamp, index) => ({
-    x: new Date(timestamp),
-    y: selectedExerciseData.durations[index],
-  }));
-
-  // Sort dataPoints based on x (date) values
-  dataPoints.sort((a, b) => a.x - b.x);
+  // Extract timestamps and durations from selectedExerciseData
+  const timestamps = selectedExerciseData.map((entry) => entry.date);
+  const durations = selectedExerciseData.map((entry) => entry.duration);
 
   const data = {
+    labels: timestamps,
     datasets: [
       {
         label: selectedExercise,
-        data: dataPoints,
+        data: durations,
         borderColor: 'rgba(75, 192, 192, 1)',
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         borderWidth: 2,
@@ -81,30 +81,28 @@ const StatsWeightlifting = () => {
           (exercise) => exercise.email === user.currentUser
         );
 
-        const exerciseChartData = {};
+        const reformattedData = {};
 
         userExercises.forEach((exercise) => {
           const date = exercise.date.substring(0, 10);
-          if (!exerciseChartData[exercise.description]) {
-            exerciseChartData[exercise.description] = {
-              timestamps: [],
-              durations: [],
-            };
+          if (!reformattedData[exercise.description]) {
+            reformattedData[exercise.description] = [];
           }
 
-          exerciseChartData[exercise.description].timestamps.push(date);
-          exerciseChartData[exercise.description].durations.push(exercise.duration);
+          reformattedData[exercise.description].push({
+            date,
+            duration: exercise.duration,
+          });
         });
 
-        setExerciseData(exerciseChartData);
-        setSelectedExercise(Object.keys(exerciseChartData)[0]);
+        setExerciseData(reformattedData);
       } catch (error) {
         console.log(error);
       }
     };
 
     fetchUserExerciseData();
-  }, [user.currentUser]);
+  }, [user.currentUser, selectedExercise]);
 
   return (
     <div>
