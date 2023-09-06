@@ -4,7 +4,6 @@ import { useUser } from '../UserContext';
 
 const Exercise = (props) => (
   <tr>
-    <td>{props.exercise.email}</td> {/* Change username to email */}
     <td>{props.exercise.description}</td>
     <td>{props.exercise.duration}</td>
     <td>{props.exercise.date.substring(0, 10)}</td>
@@ -33,6 +32,7 @@ const Exercise = (props) => (
 const Home = () => {
   const user = useUser();
   const [exercises, setExercises] = useState([]);
+  const [displayAll, setDisplayAll] = useState(true); // State to track display mode
 
   useEffect(() => {
     const fetchExercises = async () => {
@@ -57,8 +57,25 @@ const Home = () => {
     setExercises((prevExercises) => prevExercises.filter((el) => el._id !== id));
   };
 
+  const toggleDisplayMode = () => {
+    setDisplayAll((prevDisplay) => !prevDisplay);
+  };
+
   const exerciseList = () => {
-    return exercises.map((currentExercise) => (
+    // Filter the exercises based on the display mode
+    const filteredExercises = displayAll
+      ? exercises
+      : exercises.reduce((acc, currentExercise) => {
+          // Create an object to track the highest weight per exercise
+          if (!acc[currentExercise.description]) {
+            acc[currentExercise.description] = currentExercise;
+          } else if (currentExercise.weight > acc[currentExercise.description].weight) {
+            acc[currentExercise.description] = currentExercise;
+          }
+          return acc;
+        }, {});
+
+    return Object.values(filteredExercises).map((currentExercise) => (
       <Exercise
         exercise={currentExercise}
         deleteExercise={deleteExercise}
@@ -70,10 +87,12 @@ const Home = () => {
   return (
     <div>
       <h3>Logged Exercises</h3>
+      <button onClick={toggleDisplayMode}>
+        {displayAll ? 'Show Highest Weight Only' : 'Show All Stats'}
+      </button>
       <table className='table'>
         <thead className='thread-light'>
           <tr>
-            <th>Email</th>
             <th>Lift Description</th>
             <th>Weight (in lb)</th>
             <th>Date</th>
