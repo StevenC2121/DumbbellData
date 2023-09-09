@@ -33,6 +33,8 @@ const Home = () => {
   const user = useUser();
   const [exercises, setExercises] = useState([]);
   const [displayAll, setDisplayAll] = useState(true); // State to track display mode
+  const [sortColumn, setSortColumn] = useState('description'); // Initial sorting column
+  const [sortOrder, setSortOrder] = useState('asc'); // Initial sorting order
 
   useEffect(() => {
     const fetchExercises = async () => {
@@ -61,11 +63,38 @@ const Home = () => {
     setDisplayAll((prevDisplay) => !prevDisplay);
   };
 
+  // Function to handle sorting when a table header is clicked
+  const handleSort = (column) => {
+    if (column === sortColumn) {
+      // If clicking the same column, toggle the sorting order
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+    } else {
+      // If clicking a different column, set it as the new sorting column
+      setSortColumn(column);
+      setSortOrder('asc'); // Set the initial sorting order for the new column
+    }
+  };
+
   const exerciseList = () => {
+    // Sort the exercises based on the sorting criteria
+    let sortedExercises = [...exercises];
+    sortedExercises.sort((a, b) => {
+      const aValue = a[sortColumn];
+      const bValue = b[sortColumn];
+      
+      if (aValue < bValue) {
+        return sortOrder === 'asc' ? -1 : 1;
+      } else if (aValue > bValue) {
+        return sortOrder === 'asc' ? 1 : -1;
+      } else {
+        return 0;
+      }
+    });
+
     // Filter the exercises based on the display mode
     const filteredExercises = displayAll
-      ? exercises
-      : exercises.reduce((acc, currentExercise) => {
+      ? sortedExercises
+      : sortedExercises.reduce((acc, currentExercise) => {
           // Create an object to track the highest weight per exercise
           if (!acc[currentExercise.description]) {
             acc[currentExercise.description] = currentExercise;
@@ -84,6 +113,13 @@ const Home = () => {
     ));
   };
 
+  const getSortIndicator = (column) => {
+    if (column === sortColumn) {
+      return sortOrder === 'asc' ? '↑' : '↓'; // Up or down arrow
+    }
+    return '';
+  };
+
   return (
     <div>
       <h3>Logged Exercises</h3>
@@ -91,11 +127,17 @@ const Home = () => {
         {displayAll ? 'Show Highest Weight Only' : 'Show All Stats'}
       </button>
       <table className='table'>
-        <thead className='thread-light'>
+        <thead className='thead-light'>
           <tr>
-            <th>Lift Description</th>
-            <th>Weight (in lb)</th>
-            <th>Date</th>
+            <th onClick={() => handleSort('description')}>
+              Lift Description {getSortIndicator('description')}
+            </th>
+            <th onClick={() => handleSort('duration')}>
+              Weight (in lb) {getSortIndicator('duration')}
+            </th>
+            <th onClick={() => handleSort('date')}>
+              Date {getSortIndicator('date')}
+            </th>
             <th>Actions</th>
           </tr>
         </thead>
