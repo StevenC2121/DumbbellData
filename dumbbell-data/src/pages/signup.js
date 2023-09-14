@@ -35,6 +35,8 @@ const Signup = () => {
 
   return (
     <div>
+      <div className="login-container">
+      <h1>Welcome to Dumbbell Data!</h1>
       <div className="login-page">
       <div className="login-box">
       <h2>Signup</h2>
@@ -58,6 +60,7 @@ const Signup = () => {
         <p>For returning users:</p>
         <Link to="/">Login Page</Link>
       </div>
+    </div>
     </div>
     </div>
     </div>

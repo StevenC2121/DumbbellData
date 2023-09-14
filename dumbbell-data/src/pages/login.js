@@ -41,6 +41,8 @@ const Login = () => {
 
   return (
     <div>
+      <div className="login-container">
+      <h1>Welcome back!</h1>
       <div className="login-page">
         <div className="login-box">
           <h2>Login</h2>
@@ -64,6 +66,7 @@ const Login = () => {
             <Link to="/signup">Signup Page</Link>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
