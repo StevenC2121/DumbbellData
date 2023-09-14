@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import bcrypt from "bcryptjs";
 import { useUser } from "../UserContext"; // Import useUser from UserContext
+import "./login.css"; 
 
 const Signup = () => {
   const history = useNavigate();
@@ -34,7 +35,9 @@ const Signup = () => {
 
   return (
     <div>
-      <h1>Signup</h1>
+      <div className="login-page">
+      <div className="login-box">
+      <h2>Signup</h2>
 
       <form action="POST" onSubmit={submit}>
         <input
@@ -51,9 +54,12 @@ const Signup = () => {
         />
         <input type="submit" />
       </form>
-      <br />
-      <p>OR</p>
-      <Link to="/">Login Page</Link>
+      <div className="signup-link">
+        <p>For returning users:</p>
+        <Link to="/">Login Page</Link>
+      </div>
+    </div>
+    </div>
     </div>
   );
 };

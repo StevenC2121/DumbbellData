@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import bcrypt from "bcryptjs"; // Import bcryptjs
+import bcrypt from "bcryptjs"; 
 import { useUser } from "../UserContext";
+import "./login.css"; 
+
 
 const Login = () => {
   const history = useNavigate();
@@ -39,26 +41,30 @@ const Login = () => {
 
   return (
     <div>
-      <h1>Login</h1>
-
-      <form onSubmit={submit}>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="email"
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="password"
-        />
-        <input type="submit" />
-      </form>
-      <br />
-      <p>OR</p>
-      <Link to="/signup">Signup Page</Link>
+      <div className="login-page">
+        <div className="login-box">
+          <h2>Login</h2>
+          <form onSubmit={submit}>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="email"
+            />
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="password"
+            />
+            <input type="submit" />
+          </form>
+          <div className="signup-link">
+            <p>If you are new:</p>
+            <Link to="/signup">Signup Page</Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
