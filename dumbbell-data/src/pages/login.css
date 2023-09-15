@@ -1,4 +1,23 @@
 /* login.css */
+.emoji {
+  font-size: 20px; /* Adjust the size of the emoji */
+  margin-right: 10px; /* Add some spacing between emoji and input */
+  height: 40px;
+}
+
+/* Style the input containers */
+.input-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 10px; /* Add some spacing between input containers */
+}
+
+input[type="email"],
+input[type="password"] {
+  padding-left: 0; /* No left padding for input */
+  flex: 1; /* Allow input to grow and fill the container */
+}
 
 /* Center the login box vertically and horizontally */
 .login-page {

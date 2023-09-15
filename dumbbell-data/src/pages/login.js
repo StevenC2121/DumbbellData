@@ -47,18 +47,24 @@ const Login = () => {
         <div className="login-box">
           <h2>Login</h2>
           <form onSubmit={submit}>
+          <div className="input-container">
+          <span className="emoji">📧</span>        
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="email"
-            />
+            /> 
+            </div>
+            <div className="input-container">
+            <span className="emoji">🔒</span>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="password"
             />
+            </div>
             <input type="submit" />
           </form>
           <div className="signup-link">

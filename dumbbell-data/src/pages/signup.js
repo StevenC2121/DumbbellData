@@ -35,25 +35,30 @@ const Signup = () => {
 
   return (
     <div>
-      <div className="login-container">
-      <h1>Welcome to Dumbbell Data!</h1>
-      <div className="login-page">
-      <div className="login-box">
+<div className="login-container">
+  <h1>Welcome to Dumbbell Data!</h1>
+  <div className="login-page">
+    <div className="login-box">
       <h2>Signup</h2>
-
       <form action="POST" onSubmit={submit}>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="email"
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="password"
-        />
+        <div className="input-container">
+          <span className="emoji">📧</span>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+          />
+        </div>
+        <div className="input-container">
+          <span className="emoji">🔒</span>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+          />
+        </div>
         <input type="submit" />
       </form>
       <div className="signup-link">
@@ -61,8 +66,9 @@ const Signup = () => {
         <Link to="/">Login Page</Link>
       </div>
     </div>
-    </div>
-    </div>
+  </div>
+</div>
+
     </div>
   );
 };
