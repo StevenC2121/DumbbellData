@@ -44,15 +44,6 @@ export default function Weightlifting() {
     <div>
       <h3>Create New Weightlifting Log</h3>
       <form onSubmit={handleSubmit}>
-      <div className='form-group'>
-  <label>Email: </label>
-  <input 
-    type='text'
-    className='form-control'
-    value={user.currentUser} // Display the currently logged-in user's email
-    readOnly // Make the input read-only
-  />
-</div>
         <div className='form-group'>
           {/* Email is automatically filled from the currently logged-in user */}
           <label>Lift Description: </label>
