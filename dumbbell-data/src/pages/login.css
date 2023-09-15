@@ -1,107 +1,101 @@
 /* login.css */
 .emoji {
-  font-size: 20px; /* Adjust the size of the emoji */
-  margin-right: 10px; /* Add some spacing between emoji and input */
+  font-size: 20px;
+  margin-right: 10px;
   height: 40px;
 }
 
-/* Style the input containers */
 .input-container {
   display: flex;
   align-items: center;
   position: relative;
-  margin-bottom: 10px; /* Add some spacing between input containers */
+  margin-bottom: 10px;
 }
 
 input[type="email"],
 input[type="password"] {
-  padding-left: 0; /* No left padding for input */
-  flex: 1; /* Allow input to grow and fill the container */
+  padding-left: 0;
+  flex: 1;
 }
 
-/* Center the login box vertically and horizontally */
 .login-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* 100% of the viewport height */
-    margin: 0;
-  }
-  .login-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-top: 50px;
-    height: 100vh; /* 100% of the viewport height */
-    margin: 0;
-  }
-  /* Style the login box */
-  .login-box {
-    width: 400px; /* Set a fixed width for the box */
-    height: 350px; /* Set a fixed height for the box */
-    padding: 20px;
-    background-color: #ffffff; /* Background color for the box */
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Add a box shadow for depth */
-    margin-top: -400px; /* Adjust the margin to move the box up */
-  }
-  
-  /* Style form elements */
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  input[type="email"],
-  input[type="password"],
-  input[type="submit"] {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-  
-  /* Style the submit button */
-  input[type="submit"] {
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  input[type="submit"]:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Style the "OR" separator and the link to the signup page */
-  .signup-link {
-    display: flex;
-    align-items: center; /* Vertically align the contents */
-    justify-content: center; /* Horizontally align the contents */
-    margin: 10px 0; /* Adjust the vertical margin */
-    padding-top: 15px;
-  }
-  
-  /* Style the "If you are new:" text */
-  .signup-link p {
-    margin: 0; /* Remove any default margin */
-    margin-right: 10px; /* Add spacing between the text and link */
-  }
-  
-  /* Style the link to the signup page */
-  .signup-link a {
-    text-decoration: underline;
-    color: #007bff;
-  }
-  
-  .signup-link a:hover {
-    text-decoration: underline;
-    color: purple;
-  }
-  
-  h2 {
-    text-align: center;
-    padding-bottom: 20px;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+  height: 100vh;
+  margin: 0;
+}
+
+.login-box {
+  width: 400px;
+  height: 350px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  margin-top: -400px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="submit"] {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.signup-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+  padding-top: 15px;
+}
+
+.signup-link p {
+  margin: 0;
+  margin-right: 10px;
+}
+
+.signup-link a {
+  text-decoration: underline;
+  color: #007bff;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+  color: purple;
+}
+
+h2 {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
