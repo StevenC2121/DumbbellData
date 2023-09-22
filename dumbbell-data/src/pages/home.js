@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useUser } from '../UserContext';
+import './home.css'
 
 const Exercise = (props) => (
   <tr>
@@ -35,13 +36,14 @@ const Home = () => {
   const [displayAll, setDisplayAll] = useState(true); // State to track display mode
   const [sortColumn, setSortColumn] = useState('description'); // Initial sorting column
   const [sortOrder, setSortOrder] = useState('asc'); // Initial sorting order
+  const [filterInput, setFilterInput] = useState(''); // State for filter input
 
   useEffect(() => {
     const fetchExercises = async () => {
       try {
         const response = await axios.get('http://localhost:5000/exercises/');
         const userExercises = response.data.filter(
-          (exercise) => exercise.email === user.currentUser // Use user.currentUser
+          (exercise) => exercise.email === user.currentUser
         );
         setExercises(userExercises);
       } catch (error) {
@@ -75,6 +77,13 @@ const Home = () => {
     }
   };
 
+  // Function to filter exercises based on the filter input
+  const filterExercises = (exercises) => {
+    return exercises.filter((exercise) =>
+      exercise.description.toLowerCase().includes(filterInput.toLowerCase())
+    );
+  };
+
   const exerciseList = () => {
     // Sort the exercises based on the sorting criteria
     let sortedExercises = [...exercises];
@@ -90,12 +99,12 @@ const Home = () => {
         return 0;
       }
     });
-
-    // Filter the exercises based on the display mode
+  
+    // If displayAll is true, simply filter the exercises based on the filter input.
+    // If displayAll is false, apply additional logic to show the highest weight only.
     const filteredExercises = displayAll
-      ? sortedExercises
+      ? filterExercises(sortedExercises)
       : sortedExercises.reduce((acc, currentExercise) => {
-          // Create an object to track the highest weight per exercise
           if (!acc[currentExercise.description]) {
             acc[currentExercise.description] = currentExercise;
           } else if (currentExercise.weight > acc[currentExercise.description].weight) {
@@ -103,7 +112,7 @@ const Home = () => {
           }
           return acc;
         }, {});
-
+  
     return Object.values(filteredExercises).map((currentExercise) => (
       <Exercise
         exercise={currentExercise}
@@ -123,9 +132,18 @@ const Home = () => {
   return (
     <div>
       <h3>Logged Exercises</h3>
-      <button onClick={toggleDisplayMode}>
-        {displayAll ? 'Show Highest Weight Only' : 'Show All Stats'}
-      </button>
+      <br/>
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Search by description"
+          value={filterInput}
+          onChange={(e) => setFilterInput(e.target.value)} // Update filter input state
+        />
+        <button onClick={toggleDisplayMode}>
+          {displayAll ? 'Show Highest Weight Only' : 'Show All Stats'}
+        </button>
+      </div>
       <table className='table'>
         <thead className='thead-light'>
           <tr>

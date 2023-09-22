@@ -1,0 +1,17 @@
+/* Home.css */
+
+.search-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Add some margin to separate the search bar from the table */
+  }
+  
+  .search-bar input {
+    width: 70%; /* Adjust the width as needed */
+  }
+  
+  .search-bar button {
+    width: 25%; /* Adjust the width as needed */
+  }
+  
