@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.10d450aa.css",
-    "main.js": "/static/js/main.9d86625b.js",
-    "index.html": "/index.html",
-    "main.10d450aa.css.map": "/static/css/main.10d450aa.css.map",
-    "main.9d86625b.js.map": "/static/js/main.9d86625b.js.map"
+    "main.css": "/StevenC2121/DumbbellData.git/static/css/main.10d450aa.css",
+    "main.js": "/StevenC2121/DumbbellData.git/static/js/main.1579491b.js",
+    "index.html": "/StevenC2121/DumbbellData.git/index.html",
+    "main.10d450aa.css.map": "/StevenC2121/DumbbellData.git/static/css/main.10d450aa.css.map",
+    "main.1579491b.js.map": "/StevenC2121/DumbbellData.git/static/js/main.1579491b.js.map"
   },
   "entrypoints": [
     "static/css/main.10d450aa.css",
-    "static/js/main.9d86625b.js"
+    "static/js/main.1579491b.js"
   ]
 }
