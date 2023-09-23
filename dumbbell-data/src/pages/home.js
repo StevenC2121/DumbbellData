@@ -12,19 +12,10 @@ const Exercise = (props) => (
       <button
         className="btn btn-link"
         onClick={() => {
-          window.location.href = '/edit-exercise/' + props.exercise._id;
-        }}
-      >
-        edit
-      </button>
-      {' | '}
-      <button
-        className="btn btn-link"
-        onClick={() => {
           props.deleteExercise(props.exercise._id);
         }}
       >
-        delete
+      delete
       </button>
     </td>
   </tr>
