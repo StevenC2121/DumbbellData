@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/StevenC2121/DumbbellData/issues"
   },
-  "homepage": "https://github.com/StevenC2121/DumbbellData/dumbbell-data/src/pages/index.js",
+  "homepage": "https://github.com/StevenC2121/DumbbellData#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
