@@ -76,7 +76,7 @@ const StatsWeightlifting = () => {
   useEffect(() => {
     const fetchUserExerciseData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/exercises/');
+        const response = await axios.get('https://dumbbell-data.onrender.com/exercises/');
         const userExercises = response.data.filter(
           (exercise) => exercise.email === user.currentUser
         );

@@ -19,7 +19,7 @@ const Signup = () => {
       const saltRounds = 10;
       const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-      const response = await axios.post("http://localhost:5000/users/add", {
+      const response = await axios.post("https://dumbbell-data.onrender.com/users/add", {
         email,
         password: hashedPassword,
       });

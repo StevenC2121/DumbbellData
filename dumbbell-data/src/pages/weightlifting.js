@@ -27,7 +27,7 @@ export default function Weightlifting() {
 
       console.log(exercise);
 
-      const response = await axios.post('http://localhost:5000/exercises/add', exercise);
+      const response = await axios.post('https://dumbbell-data.onrender.com/exercises/add', exercise);
       console.log(response.data);
 
       setDescription('');
