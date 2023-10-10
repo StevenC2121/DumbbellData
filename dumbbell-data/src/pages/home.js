@@ -32,7 +32,7 @@ const Home = () => {
   useEffect(() => {
     const fetchExercises = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/exercises/');
+        const response = await axios.get('https://dumbbell-data.onrender.com/exercises/');
         const userExercises = response.data.filter(
           (exercise) => exercise.email === user.currentUser
         );
@@ -47,7 +47,7 @@ const Home = () => {
 
   const deleteExercise = (id) => {
     axios
-      .delete(`http://localhost:5000/exercises/${id}`)
+      .delete(`https://dumbbell-data.onrender.com/exercises/${id}`)
       .then((res) => console.log(res.data));
     setExercises((prevExercises) => prevExercises.filter((el) => el._id !== id));
   };

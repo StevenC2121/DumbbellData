@@ -16,7 +16,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.get("http://localhost:5000/users");
+      const response = await axios.get("https://dumbbell-data.onrender.com/users");
       const users = response.data;
 
       const user = users.find((u) => u.email === email);
