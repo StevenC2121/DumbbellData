@@ -5,7 +5,6 @@ import { useUser } from '../UserContext';
 
 const LineChart = ({ exerciseData, selectedExercise }) => {
   const selectedExerciseData = exerciseData[selectedExercise] || [];
-
   // Sort the data by date
   selectedExerciseData.sort((a, b) => new Date(a.date) - new Date(b.date));
 
@@ -71,6 +70,8 @@ const LineChart = ({ exerciseData, selectedExercise }) => {
 const StatsWeightlifting = () => {
   const [selectedExercise, setSelectedExercise] = useState(''); // Set a default value here
   const [exerciseData, setExerciseData] = useState({});
+  const [haveData, setHaveData] = useState(false); // New state for data availability
+
   const user = useUser();
 
   useEffect(() => {
@@ -96,6 +97,7 @@ const StatsWeightlifting = () => {
         });
 
         setExerciseData(reformattedData);
+        setHaveData(true); // Set to true when data is available
 
         // Set the default selected exercise here (e.g., the first exercise in the list)
         if (Object.keys(reformattedData).length > 0) {
@@ -103,6 +105,7 @@ const StatsWeightlifting = () => {
         }
       } catch (error) {
         console.log(error);
+        setHaveData(false); // Set to false on error
       }
     };
 
@@ -122,12 +125,15 @@ const StatsWeightlifting = () => {
           </option>
         ))}
       </select>
-      {selectedExercise && (
+      {haveData ? ( // Conditionally render based on data availability
         <LineChart exerciseData={exerciseData} selectedExercise={selectedExercise} />
+      ) : (
+        <div>Loading...</div>
       )}
     </div>
   );
 };
+
 
 
 export default StatsWeightlifting;
